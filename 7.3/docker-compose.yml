@@ -1,0 +1,47 @@
+version: '3'
+
+services:
+  mysql56:
+    image: mysql:5.6
+    container_name: mysql56
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: 'ar7711'
+    ports:
+      - '3356:3306'
+    volumes:
+      - ./../sql/create_user.sql:/docker-entrypoint-initdb.d/create_user.sql
+      - ./../sql/alter_user.sql:/docker-entrypoint-initdb.d/alter_user.sql
+    networks:
+      - app-network
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: phpmyadmin56
+    environment:
+      PMA_HOST: mysql56
+      PMA_USER: 'root'
+      PMA_PORT: '3306'
+      PMA_PASSWORD: 'ar7711'
+    ports:
+      - "5656:80"
+    depends_on:
+      - mysql56
+    networks:
+      - app-network
+  ubuntu73:
+    build: .
+    container_name: ubuntu_php73
+    tty: true
+    stdin_open: true
+    ports:
+      - "73:80"
+    volumes:
+      - ./../src:/var/www
+      - ./../.ssh:/root/.ssh/
+    depends_on:
+      - mysql56
+    networks:
+      - app-network
+networks:
+  app-network:
+    driver: bridge
