@@ -25,7 +25,7 @@ RUN nginx -t && service nginx restart
 RUN service nginx start
 
 # NGINX CONFIG
-COPY ./../nginx/* /etc/nginx/sites-enabled/
+COPY ./nginx/* /etc/nginx/sites-enabled/
 
 # SSH CREDENTIALS
 COPY ./../ssh/* /root/.ssh/
