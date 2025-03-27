@@ -32,4 +32,3 @@ RUN chmod 700 /root/.ssh
 WORKDIR /
 
 CMD service php8.1-fpm start && nginx -g 'daemon off;'
-
