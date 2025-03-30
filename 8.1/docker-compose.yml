@@ -20,7 +20,7 @@ services:
       PMA_PORT: ${MYSQL_ROOT_PORT}
       PMA_PASSWORD: ${MYSQL_ROOT_PASSWORD}
     ports:
-      - "0808:80"
+      - "8080:80"
     depends_on:
       - mysql
     networks:
