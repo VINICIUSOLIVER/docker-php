@@ -27,7 +27,7 @@ COPY ./nginx/* /etc/nginx/sites-enabled/
 
 # SSH CREDENTIALS
 COPY ./ssh/* /root/.ssh/
-RUN chmod 700 /root/.ssh
+RUN chmod 600 /root/.ssh
 
 # COMPOSER
 RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
