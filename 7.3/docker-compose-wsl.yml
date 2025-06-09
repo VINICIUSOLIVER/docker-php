@@ -24,7 +24,10 @@ services:
     networks:
       - app-network
   ubuntu73:
-    build: .
+    build:
+      context: ../
+      dockerfile: Dockerfile
+      network: host
     container_name: ubuntu_php73
     tty: true
     stdin_open: true

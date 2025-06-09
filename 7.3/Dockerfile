@@ -14,13 +14,12 @@ RUN apt-get install -y lsb-release apt-transport-https ca-certificates software-
 RUN add-apt-repository ppa:ondrej/php
 RUN apt-get install -y php7.3
 RUN apt-get install -y php7.3-cli php7.3-soap php7.3-fpm php7.3-json php7.3-pdo php7.3-mysql php7.3-zip php7.3-gd  php7.3-mbstring php7.3-curl php7.3-xml php7.3-bcmath php7.3-json
-RUN service php7.3-fpm start
 
 # NGINX
 RUN apt-get install -y nginx
 RUN ufw allow 'Nginx HTTP'
-RUN nginx -t && service nginx restart
-RUN service nginx start
+#RUN nginx -t && service nginx restart
+#RUN service nginx start
 
 # NGINX CONFIG
 COPY ./nginx/* /etc/nginx/sites-enabled/
@@ -36,7 +35,10 @@ RUN php composer-setup.php
 RUN php -r "unlink('composer-setup.php');"
 RUN mv composer.phar /usr/local/bin/composer
 
+COPY start.sh /start.sh
+RUN chmod +x /start.sh
+
 WORKDIR /
 
-CMD service php7.3-fpm start && nginx -g 'daemon off;'
+CMD ["/start.sh"]
 

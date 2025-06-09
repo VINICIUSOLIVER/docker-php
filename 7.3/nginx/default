@@ -11,8 +11,8 @@ server {
 
     charset utf-8;
 
-    location /project/public {
-        try_files $uri /project/public/index.php$is_args$args;
+    location /softcomshop022200/public {
+        try_files $uri /softcomshop022200/public/index.php$is_args$args;
     }
 
     location = /favicon.ico { access_log off; log_not_found off; }
