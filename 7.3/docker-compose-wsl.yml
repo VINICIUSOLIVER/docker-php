@@ -25,7 +25,7 @@ services:
       - app-network
   ubuntu73:
     build:
-      context: ../
+      context: .
       dockerfile: Dockerfile
       network: host
     container_name: ubuntu_php73
