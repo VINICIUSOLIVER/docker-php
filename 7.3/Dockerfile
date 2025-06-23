@@ -52,5 +52,5 @@ RUN chmod +x /script.script.start.sh
 
 WORKDIR /
 
-CMD ["/start.sh"]
+CMD ["/script.start.sh"]
 
