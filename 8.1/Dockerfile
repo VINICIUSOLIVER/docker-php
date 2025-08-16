@@ -29,7 +29,7 @@ RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');" &&
     mv composer.phar /usr/local/bin/composer
 
 COPY script.start.sh /start.sh
-RUN chmod +x /script.script.start.sh
+RUN chmod +x /start.sh
 
 WORKDIR /
 
