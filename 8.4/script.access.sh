@@ -1,2 +1,2 @@
 #!/bin/bash
-docker exec -it ubuntu_php81 bash
+docker exec -it ubuntu_php84 bash
