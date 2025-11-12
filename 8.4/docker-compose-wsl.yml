@@ -1,0 +1,44 @@
+services:
+  mysql84:
+    image: mysql:latest
+    container_name: mysql84
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+    ports:
+      - "3384:3306"
+    networks:
+      - app-network
+  phpmyadmin84:
+    image: phpmyadmin/phpmyadmin
+    container_name: phpmyadmin84
+    environment:
+      PMA_HOST: mysql84
+      PMA_USER: ${MYSQL_ROOT_USER}
+      PMA_PORT: ${MYSQL_ROOT_PORT}
+      PMA_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+    ports:
+      - "8484:80"
+    depends_on:
+      - mysql84
+    networks:
+      - app-network
+  ubuntu84:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      network: host
+    container_name: ubuntu_php84
+    tty: true
+    stdin_open: true
+    ports:
+      - "84:80"
+    volumes:
+      - ${FOLDER_DESTINATION}:/var/www
+    depends_on:
+      - mysql84
+    networks:
+      - app-network
+networks:
+  app-network:
+    driver: bridge
