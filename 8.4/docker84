@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+
+PROJECT=$(basename "$PWD")
+COMMAND="$*"
+
+docker exec -u $(id -u):$(id -g) -it ubuntu_php84 bash -lc "cd /var/www/$PROJECT && $COMMAND"

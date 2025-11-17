@@ -17,3 +17,31 @@ colima stop (caso iniciado)
 colima delete
 colima start --mount-type 9p --memory 5 --cpu 3
 ```
+
+# Comandos globais
+Este guia mostra como criar um comando global chamado docker73/docker81/docker84, que executa qualquer comando dentro do container ubuntu_php73/ubuntu_php81/ubuntu_php84, entrando automaticamente na pasta correspondente do projeto.
+
+1. Copiar arquivo
+Copie os arquivos para a pasta /usr/local/bin:
+```bash
+/usr/local/bin/docker73
+/usr/local/bin/docker81
+/usr/local/bin/docker84
+```
+
+2. Dar permissão de execução
+```bash
+sudo chmod +x /usr/local/bin/docker73
+sudo chmod +x /usr/local/bin/docker81
+sudo chmod +x /usr/local/bin/docker84
+```
+
+4. Como usar
+Entre na pasta do seu projeto e pode executar qualquer comando:
+```bash
+docker73 php artisan migrate
+docker73 composer install
+docker73 php -v
+docker73 "php artisan tinker"
+docker73 ls -la
+```
